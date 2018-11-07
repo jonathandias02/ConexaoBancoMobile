@@ -10,7 +10,7 @@ $senha = "";
 try {
     $conexao = new PDO($dsn, $usuario, $senha);
     
-    $sql = 'SELECT s.sigla, s.numero, s.dataAtendimento, se.nomeServico, u.nome, u.sobrenome FROM t_senhas s, t_servicos se, t_usuario u WHERE s.t_servicos_id = se.id AND s.t_usuario_id = u.id AND situacao = "Atendida" AND email = :EMAIL ORDER BY s.id DESC LIMIT 10';
+    $sql = 'SELECT s.sigla, s.numero, s.dataAtendimento, se.nomeServico, u.nome, u.sobrenome FROM t_senhas s, t_servicos se, t_usuario u WHERE s.t_servicos_id = se.id AND s.t_usuario_id = u.id AND situacao = "Avaliada" AND email = :EMAIL ORDER BY s.id DESC LIMIT 7';
     $stmt1 = $conexao->prepare($sql);
     $stmt1->bindParam(':EMAIL', $email);
     $stmt1->execute();
