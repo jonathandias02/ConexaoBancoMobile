@@ -6,6 +6,7 @@ $idUsuario = isset($filtro['idUsuario']) ? $filtro['idUsuario'] : null;
 $cnpj = isset($filtro['cnpj']) ? $filtro['cnpj'] : null;
 $nota = isset($filtro['nota']) ? $filtro['nota'] : null;
 $idSenha = isset($filtro['idSenha']) ? $filtro['idSenha'] : null;
+$avaliacao = isset($filtro['avaliacao']) ? $filtro['avaliacao'] : null;
 $dsn = "mysql:host=localhost;dbname=$banco;charset=utf8";
 $dsn1 = "mysql:host=localhost;dbname=atendimentos_solutions;charset=utf8";
 $usuario = "root";
@@ -22,9 +23,10 @@ try {
     $stmt->bindParam(':IDUSUARIO', $idUsuario);
     $stmt->execute();
 
-    $sql2 = 'UPDATE t_senhas SET situacao = "Avaliada" WHERE id = :ID';
+    $sql2 = 'UPDATE t_senhas SET situacao = "Avaliada", avaliacao = :AVALIACAO WHERE id = :ID';
     $stmt1 = $conexao->prepare($sql2);
     $stmt1->bindParam(':ID', $idSenha);
+    $stmt1->bindParam(':AVALIACAO', $avaliacao);
     $stmt1->execute();
     $retorno = array();
 
